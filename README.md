@@ -11,3 +11,6 @@ Install needed packages.
 
 Run project in the localhost.
 `npm run dev`
+
+Walk-through and explain this project.  
+`https://www.loom.com/share/586927ed51394013a4040abe7cba7884`
