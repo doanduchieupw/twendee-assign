@@ -20,9 +20,10 @@ interface ITable {
 
 const Table: React.FC<ITable> = (props: ITable) => {
   const { columns, data, level, isLoading }: ITable = props;
+
   return (
     <div className='h-full text-xs sm:text-sm md:text-base'>
-      <table className='relative w-full h-4/5 block shadow-xl rounded-md'>
+      <table className='relative w-full h-[280px] sm:h-[360px] md:h-[600px] block shadow-xl rounded-md'>
         <thead className='w-full sticky bg-[#f1f5f8] text-center block rounded-t-md'>
           <tr className='flex'>
             {columns.map((col: IColumn, index: number) => (
@@ -30,7 +31,7 @@ const Table: React.FC<ITable> = (props: ITable) => {
             ))}
           </tr>
         </thead>
-        <tbody className='w-full h-[calc(100%-50px)] overflow-y-auto scroll-smooth block font-medium'>
+        <tbody className='w-full h-[230px] sm:h-[310px] md:h-[550px] overflow-y-auto scroll-smooth block font-medium'>
           {isLoading ? (
             <SkeletonLoading />
           ) : (
@@ -38,7 +39,7 @@ const Table: React.FC<ITable> = (props: ITable) => {
               <tr className='border-b flex' key={index}>
                 {columns.map((col: IColumn, index: number) => (
                   <td
-                    className={`p-1.5 w-1/2 flex items-center border-r ${
+                    className={`p-1.5 flex items-center border-r ${
                       typeof item[col.key] === 'string' ? '' : 'justify-center'
                     }`}
                     style={{ flexBasis: col.width }}
