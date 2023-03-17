@@ -8,9 +8,11 @@ const Selector: React.FC<ISelector> = (props: ISelector) => {
   const { level } = props;
   const { setItemOnPage } = usePagination();
   return (
-    <select onChange={(e) => setItemOnPage(parseInt(e.target.value))}>
-      {level.map((item) => (
-        <option value={item}>{item + ' / page'}</option>
+    <select className='bg-white font-medium' onChange={(e) => setItemOnPage(parseInt(e.target.value))}>
+      {level.map((item: number, index: number) => (
+        <option value={item} key={index}>
+          {item + ' / page'}
+        </option>
       ))}
     </select>
   );

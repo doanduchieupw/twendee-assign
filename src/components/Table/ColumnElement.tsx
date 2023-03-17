@@ -18,7 +18,6 @@ const ColumnElement: React.FC<IColumnElement> = (props: IColumnElement) => {
         flexBasis: col.width,
       }}
       onClick={() => {
-        console.log(col.key);
         if (col?.sort) {
           asc === true ? sortUser('username', 'asc') : sortUser('username', 'desc');
         }

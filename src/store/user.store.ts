@@ -12,10 +12,13 @@ const useUser = create<UserState>((set) => ({
   setUser: (data) => set(() => ({ user: data })),
   sortUser: (field, type) =>
     set((state) => {
-      let users = state.user;
-      users.sort((a, b) => {
-        if (a[field] < b[field]) return type === 'asc' ? -1 : 1;
-        if (a[field] > b[field]) return type === 'asc' ? 1 : -1;
+      let users = state.user || [];
+      users.sort((a: IUser, b: IUser) => {
+        let x = a[field] as string;
+        let y = b[field] as string;
+
+        if (x < y) return type === 'asc' ? -1 : 1;
+        if (x > y) return type === 'asc' ? 1 : -1;
         return 0;
       });
 

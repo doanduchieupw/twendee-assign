@@ -25,23 +25,24 @@ const Table: React.FC<ITable> = (props: ITable) => {
       <table className='relative w-full h-4/5 block shadow-xl rounded-md'>
         <thead className='w-full sticky bg-[#f1f5f8] text-center block rounded-t-md'>
           <tr className='flex'>
-            {columns.map((col: IColumn) => (
-              <ColumnElement col={col} />
+            {columns.map((col: IColumn, index: number) => (
+              <ColumnElement col={col} key={index} />
             ))}
           </tr>
         </thead>
-        <tbody className='w-full h-[calc(100%-50px)] overflow-y-scroll block font-medium'>
+        <tbody className='w-full h-[calc(100%-50px)] overflow-y-auto scroll-smooth block font-medium'>
           {isLoading ? (
             <SkeletonLoading />
           ) : (
-            data.map((item: any) => (
-              <tr className='border-b flex'>
-                {columns.map((col: IColumn) => (
+            data.map((item: any, index: number) => (
+              <tr className='border-b flex' key={index}>
+                {columns.map((col: IColumn, index: number) => (
                   <td
                     className={`p-1.5 w-1/2 flex items-center border-r ${
                       typeof item[col.key] === 'string' ? '' : 'justify-center'
                     }`}
                     style={{ flexBasis: col.width }}
+                    key={index}
                   >
                     <span className='line-clamp-1'>{item[col.key]}</span>
                   </td>

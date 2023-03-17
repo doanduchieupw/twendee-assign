@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import axios from 'axios';
-
 import Table, { IColumn } from '../components/Table';
 import usePagination from '../store/page.store';
 import useUser from '../store/user.store';
@@ -31,29 +29,11 @@ const TablePage = () => {
   const { user, setUser } = useUser();
   const { pageNumber, itemOnPage } = usePagination();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const { data } = await axios.get(`https://randomuser.me/api/?page=${pageNumber}&results=${itemOnPage}`);
-
-  //     const convertData: IUser[] = data.results.map((result: any) => ({
-  //       fullname: Object.values(result.name).join(' '),
-  //       username: result?.login?.username,
-  //       thumbnail: (
-  //         <img
-  //           src={result?.picture?.large}
-  //           className='w-4 h-4 sm:w-6 sm:h-6  md:w-12 md:h-12 rounded-full object-cover'
-  //         />
-  //       ),
-  //     }));
-
-  //     setUser(convertData);
-  //   };
-  //   fetchData();
-  // }, [pageNumber, itemOnPage]);
-
   const { data, isLoading } = useQuery({
     queryKey: ['users', { pageNumber, itemOnPage }],
     queryFn: () => getUsers(pageNumber, itemOnPage),
+    staleTime: 60 * 1000,
+    cacheTime: 5 * 60 * 1000,
   });
 
   useEffect(() => {
